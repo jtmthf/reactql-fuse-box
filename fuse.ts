@@ -1,5 +1,5 @@
-import { Sparky, FuseBox, UglifyJSPlugin, TypeScriptHelpers, CSSPlugin, EnvPlugin } from 'fuse-box';
-import { join, relative } from 'path';
+import { Sparky, FuseBox, UglifyJSPlugin, TypeScriptHelpers, CSSPlugin, EnvPlugin, WebIndexPlugin } from 'fuse-box';
+import { join } from 'path';
 import * as express from 'express';
 const dummy = new FuseBox().producer;
 let producer:  typeof dummy;
@@ -17,6 +17,7 @@ Sparky.task('build', ['prepare'], async () => {
       TypeScriptHelpers(),
       EnvPlugin({ NODE_ENV: production ? 'production' : 'development' }),
       CSSPlugin(),
+      WebIndexPlugin({title: 'ReactQL'}),
       production && UglifyJSPlugin(),
     ]
   });
@@ -48,25 +49,25 @@ Sparky.task('build', ['prepare'], async () => {
 });
 
 // main task
-Sparky.task('default', ['clean', 'build', 'make-html'], () => {});
+Sparky.task('default', ['clean', 'build'], () => {});
 
 // clean all
 Sparky.task('clean', () => Sparky.src('dist/*').clean('dist/'));
 
-// copy and replace HTML
-Sparky.task('make-html', () => {
-  return Sparky.src('src/index.html')
-    .file('*', (file: any) => {
-      const vendor = producer.bundles.get('vendor');
-      const browser = producer.bundles.get('browser');
-      // get generated bundle names
-      file.template({
-        vendor: relative('dist/public', vendor!.process.filePath),
-        browser: relative('dist/public', browser!.process.filePath),
-      });
-    })
-    .dest('dist/$name');
-});
+// // copy and replace HTML
+// Sparky.task('make-html', () => {
+//   return Sparky.src('src/index.html')
+//     .file('*', (file: any) => {
+//       const vendor = producer.bundles.get('vendor');
+//       const browser = producer.bundles.get('browser');
+//       // get generated bundle names
+//       file.template({
+//         vendor: relative('dist/public', vendor!.process.filePath),
+//         browser: relative('dist/public', browser!.process.filePath),
+//       });
+//     })
+//     .dest('dist/$name');
+// });
 
 Sparky.task('set-production-env', () => production = true);
-Sparky.task('dist', ['clean', 'set-production-env', 'build', 'make-html'], () => {});
+Sparky.task('dist', ['clean', 'set-production-env', 'build'], () => {});
