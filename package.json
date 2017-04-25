@@ -1,0 +1,9 @@
+{
+  "name": "reactql-fuse-box",
+  "version": "0.1.0",
+  "description": "ReactQL Fusebox starter kit app",
+  "license": "MIT",
+  "private": true,
+  "repository": "https://github.com/jtmthf/reactql-fuse-box.git",
+  "author": "Jack Moore <jtmthf@mst.edu>"
+}
