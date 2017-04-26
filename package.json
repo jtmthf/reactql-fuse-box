@@ -16,14 +16,29 @@
     "@types/node": "^7.0.13",
     "@types/react": "^15.0.22",
     "@types/react-dom": "^15.5.0",
+    "@types/react-helmet": "^5.0.1",
+    "@types/recompose": "^0.22.0",
+    "cssnano": "^3.10.0",
     "express": "^4.15.2",
     "fuse-box": "^2.0.0-beta.1",
+    "less": "^2.7.2",
+    "node-sass": "^4.5.2",
+    "postcss": "^5.2.17",
+    "postcss-cssnext": "^2.10.0",
+    "postcss-modules": "^0.6.4",
+    "postcss-nested": "^1.0.1",
     "ts-node": "^3.0.2",
     "tslib": "^1.6.1",
     "typescript": "^2.2.2"
   },
   "dependencies": {
+    "@types/react-router-dom": "^4.0.4",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-apollo": "^1.1.1",
+    "react-dom": "^15.5.4",
+    "react-helmet": "^5.0.3",
+    "react-router-dom": "^4.1.1",
+    "recompose": "^0.23.1",
+    "redux": "^3.6.0"
   }
 }

@@ -41,3 +41,6 @@ jspm_packages
 
 # Application build
 dist
+
+# Mac Crap
+.DS_Store
